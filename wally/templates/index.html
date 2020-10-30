@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Wally's Bloog</title>
+    <title>{% block titulo %}Wally's Bloog{% endblock titulo %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   {% block extracss %}
+   {% endblock extracss %}
   </head>
   <body>
   
@@ -54,9 +56,9 @@
             <nav class="site-navigation text-center " role="navigation">
 
               <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block mb-0">
-                <li class="active"><a href="">Inicio</a></li>
-                <li><a href="">Generales</a></li>
-                <li><a href="">Videojuegos</a></li>
+                <li class="active"><a href="{% url 'base:index' %}">Inicio</a></li>
+                <li><a href="{% url 'base:generales' %}">Generales</a></li>
+                <li><a href="{% url 'base:videojuegos' %}">Videojuegos</a></li>
                 <li><a href="">Contacto</a></li>
               </ul>
             </nav>
@@ -64,7 +66,7 @@
         </div>
     </header>
 
-    
+ {% block cuerpo %}    
     <div class="slide-one-item home-slider owl-carousel">
       <div class="site-cover site-cover-sm same-height overlay" style="background-image: url({{ principal.imagen_referencial.url }});">
         <div class="container">
@@ -169,7 +171,7 @@
         </div>
       </div>
     </div>
- 
+ {% endblock cuerpo %} 
     <div class="site-footer">
       <div class="container">
         <div class="row mb-5">
@@ -180,8 +182,8 @@
           <div class="col-md-3 ml-auto">
             <h3 class="footer-heading mb-4">Menú Rápido</h3>
             <ul class="list-unstyled float-left">
-              <li><a href="">Generales</a></li>
-              <li><a href="">Videojuegos</a></li>
+              <li><a href="{% url 'base:generales' %}">Generales</a></li>
+              <li><a href="{% url 'base:videojuegos' %}">Videojuegos</a></li>
               <li><a href="">Contacto</a></li>
             </ul>
           </div>
@@ -234,7 +236,8 @@
   <script src="{% static 'js/aos.js' %}"></script>
  
   <script src="{% static 'js/main.js' %}"></script>
- 
+ {% block extrajs %}
+ {% endblock extrajs %} 
  
   </body>
  </html>
