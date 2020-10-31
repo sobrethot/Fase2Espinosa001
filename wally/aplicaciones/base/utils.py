@@ -1,19 +1,17 @@
 from django.core.paginator import Paginator
 from .models import Post,Categoria,RedesSociales,Web
 
-
 def consulta(id):
     try:
-         return Post.objects.get(id = id)
+        return Post.objects.get(id = id)
     except:
-         return None
+        return None
 
 def obtenerRedes():
     return RedesSociales.objects.filter(estado = True).latest('fecha_creacion')
 
 def obtenerWeb():
     return Web.objects.filter(estado = True).latest('fecha_creacion')
-
 
 def generarCategoria(request,nombre_categoria):
     posts = Post.objects.filter(
@@ -36,3 +34,4 @@ def generarCategoria(request,nombre_categoria):
         'categoria':categoria,
     }
     return contexto
+

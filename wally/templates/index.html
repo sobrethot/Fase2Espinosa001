@@ -190,8 +190,8 @@
           <div class="col-md-4">
             <div class="mb-5">
               <h3 class="footer-heading mb-4">SUSCRÍBETE</h3>
-              <form action="" method="post" class="form-footer-subscribe">
-                
+              <form action="{% url 'base:suscribirse' %}" method="post" class="form-footer-subscribe">
+                {% csrf_token %}
                 <div class="form-group d-flex">
                   <input type="text" class="form-control" name="correo">
                   <button type="submit" class="btn btn-primary text-white">SUSCRIBIRSE</button>

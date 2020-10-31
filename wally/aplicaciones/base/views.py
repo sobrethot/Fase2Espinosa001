@@ -1,7 +1,9 @@
 import random
 from django.shortcuts import render,redirect
 from django.views.generic import ListView,View,DetailView
-from .models import Post,Categoria,RedesSociales,Web
+from django.core.mail import send_mail
+from wally.configuracion.base import EMAIL_HOST_USER
+from .models import Post,Categoria,RedesSociales,Web,Suscriptor
 from .utils import *
 from .forms import ContactoForm
 
@@ -117,6 +119,20 @@ class DetallePost(DetailView):
             'post3':consulta(post3),
         }
         return render(request,'post.html',contexto)
+
+class Suscribir(View):
+    def post(self,request,*args,**kwargs):
+        correo = request.POST.get('correo')
+        Suscriptor.objects.create(correo = correo)
+        asunto = 'GRACIAS POR SUSCRIBIRTE A Wallys Bloog!'
+        mensaje = 'Te haz suscrito exitosamente a Wallys Bloog , Gracias por tu preferencia!!'
+        try:
+            send_mail(asunto,mensaje,EMAIL_HOST_USER,[correo])
+        except:
+            pass
+
+        return redirect('base:index')
+
 
 
 
