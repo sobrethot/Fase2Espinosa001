@@ -3,6 +3,7 @@
 {% block titulo %} {{ categoria |upper }} | BLOG.DEV {% endblock titulo %}
 
 {% block cuerpo %}
+{% if user.is_authenticated %}
     <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url({{ categoria.imagen_referencial.url }});">
       <div class="container">
         <div class="row same-height justify-content-center">
@@ -60,4 +61,7 @@
         </div>
       </div>
     </section>
+{% else %}
+    You are not allowed here and you know it , login first
+{% endif %}
 {% endblock cuerpo %}
