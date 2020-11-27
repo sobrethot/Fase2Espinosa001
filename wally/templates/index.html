@@ -60,6 +60,12 @@
                 <li><a href="{% url 'base:generales' %}">Generales</a></li>
                 <li><a href="{% url 'base:videojuegos' %}">Videojuegos</a></li>
                 <li><a href="{% url 'base:formulario_contacto' %}">Contacto</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="#">Usuario: {{ user.username }}</a></li>
+                {% endif %}
+
               </ul>
             </nav>
           </div>
